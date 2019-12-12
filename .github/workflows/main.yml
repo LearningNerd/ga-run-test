@@ -1,3 +1,5 @@
+
+
 on: [push]
 
 jobs:
@@ -5,14 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Testing Sentry CLI via Actions test
     steps:
-    - name: Hello world action step
-      uses: LearningNerd/ga-sentry-test@master
-      env:
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        SENTRY_ORG: liz
-        SENTRY_PROJECT: round-robin
-      with:
-        environment: 'testingga'
-    # Use the output from the `hello` step
-    - name: Last step
-      run: echo "hi"
+      - name: Send Release to Sentry
+        uses: dmandrade/sentry-release-github-action@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: liz 
+          SENTRY_PROJECT: round-robin
+        with:
+          version: test-dmandrade-release-action
