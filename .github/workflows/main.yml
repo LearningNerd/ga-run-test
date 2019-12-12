@@ -1,19 +1,18 @@
-
-
 on: [push]
 
 jobs:
-  createSentryRelease:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: Testing Sentry CLI via Actions test
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Create a Sentry.io release
-        uses: tclindner/sentry-releases-action@v1.0.0
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: liz
-          SENTRY_PROJECT: round-robin
-        with:
-          tagName: tclindner-test-release-action
-          environment: test-ga
+    - name: Hello world action step
+      uses: LearningNerd/ga-sentry-test@master
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        SENTRY_ORG: liz
+        SENTRY_PROJECT: round-robin
+      with:
+        environment: ga-run-test-new
+    # Use the output from the `hello` step
+    - name: Last step
+      run: echo "hi"
