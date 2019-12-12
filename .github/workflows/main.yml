@@ -3,15 +3,17 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  createSentryRelease:
     runs-on: ubuntu-latest
-    name: Testing Sentry CLI via Actions test
     steps:
-      - name: Send Release to Sentry
-        uses: dmandrade/sentry-release-github-action@v1
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Create a Sentry.io release
+        uses: tclindner/sentry-releases-action@v1.0.0
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: liz 
+          SENTRY_ORG: liz
           SENTRY_PROJECT: round-robin
         with:
-          version: test-dmandrade-release-action
+          tagName: tclindner-test-release-action
+          environment: test-ga
