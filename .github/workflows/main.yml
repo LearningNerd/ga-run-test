@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello there
+    name: Testing Sentry CLI via Actions
     steps:
     - name: Hello world action step
       uses: LearningNerd/ga-sentry-test@master
